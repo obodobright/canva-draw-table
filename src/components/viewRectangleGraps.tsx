@@ -32,7 +32,7 @@ const ViewRectangleCanvasDetails: React.FC<CanvasPageProps> = ({ rectangles }) =
     }, [rectangles]);
 
     return (
-        <div className="">
+        <div className="view_canvas_mobile">
             <canvas
                 ref={canvasRef}
                 width={800}

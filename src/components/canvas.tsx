@@ -94,12 +94,9 @@ const CanvasComponentExample: React.FC<CanvasProps> = ({ onSave }) => {
     }, [rectangles, currentRect]);
 
 
-    console.log(rectangles, currentRect, calculateDistance())
-
-
 
     return (
-        <div>
+        <div className="view_canvas_mobile">
             <canvas
                 className="canvas_layout"
                 ref={canvasRef}

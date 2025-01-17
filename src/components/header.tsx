@@ -23,7 +23,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({ setViewPage }) => {
                 </ul>
 
             </div>
-            <button className="delete_all_rectangles" onClick={deleteAllSavedRectangles}>Delete rectangle</button>
+            <button className="delete_all_rectangles" onClick={deleteAllSavedRectangles}>Delete all</button>
         </nav>
     )
 }

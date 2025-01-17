@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CanvasComponentExample from "../components/canvas.example"
+import CanvasComponentExample from "../components/canvas"
 import MeasurementTable from "../components/MeasurementTable"
 import { Record, Rectangle } from "../types";
 
@@ -24,12 +24,12 @@ const DrawViews: React.FC = () => {
     };
     return (
         <div className='layout'>
-            <div className='canvas_containe'>
+            <div className='canvas_container'>
                 <h3>Draw and Design</h3>
                 <CanvasComponentExample onSave={handleSave} />
             </div>
             <div className='table_container'>
-                <h3>View all Rectangles (10)</h3>
+                <h3>View created rectangles</h3>
                 <MeasurementTable onRowClick={handleRowClick} />
             </div>
         </div>
