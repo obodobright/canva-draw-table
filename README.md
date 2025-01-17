@@ -1,4 +1,4 @@
-# ASSUMPTIONS AND LIMTATIONS
+### ASSUMPTIONS AND LIMTATIONS
 
 - The application only allows users to draw two rectangles at any given time. Users must save or
   clear the current rectangles before drawing additional ones.
@@ -10,14 +10,14 @@
   layout might not be fully optimized for very small screen sizes.
 -
 
-# STEPS TO RUN THE WEB APPLICATION
+### STEPS TO RUN THE WEB APPLICATION
 
 - git clone [Medala assessment](https://github.com/obodobright/medalla-assement.git).
 - cd medalla-assement
 - install npm dependencies - npm i
 - run the application - npm start
 
-# WEB APPLICATION FEATURE
+### WEB APPLICATION FEATURE
 
 - Draw Rectangles
 - Save Rectangles
@@ -26,7 +26,7 @@
 - Sort and delete saved records
 - Rerender saved rectangles - This is render in the second screen of `View Rectangle screen`
 
-# TECHNOLOGIES USED
+### TECHNOLOGIES USED
 
 - React - User interface
 - TypeScript - for type safety
