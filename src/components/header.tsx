@@ -7,6 +7,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({ setViewPage }) => {
 
     const deleteAllSavedRectangles = () => {
         localStorage.removeItem("measurements")
+        window.location.reload()
         setViewPage("draw")
     }
     return (
