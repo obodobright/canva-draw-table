@@ -16,6 +16,7 @@
   background-color: white;
   color: #000034;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .layout {
@@ -96,4 +97,69 @@ td button {
   border: 1px solid #000034;
   color: #000034;
   background-color: white;
+}
+
+.header_nav {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header_nav li {
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* view rectangle styles */
+.rectangle_container {
+  padding: 20px;
+}
+
+.rectangle_container .header_text h3 {
+  font-size: 20px;
+  font-weight: medium;
+  color: #0a0d14;
+}
+
+.rectangle_container .header_text p {
+  font-size: 14px;
+  font-weight: normal;
+  color: #525866;
+}
+.view_rectangle_table {
+  margin-top: 30px;
+}
+.view_canvas_container {
+  margin: 30px auto;
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+}
+
+.canvas_view_details p {
+  font-weight: 400;
+}
+
+.canvas_view_details span {
+  font-weight: bold;
+  font-size: 16px;
+}
+.view_rectangle_canvas {
+  border: 1px solid #000034;
+}
+
+.table_view_rectangle_active {
+  background-color: #a8a8e7;
+  cursor: pointer;
+}
+
+.table_view_rectangle {
+  cursor: pointer;
 }
