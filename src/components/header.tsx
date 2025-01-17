@@ -1,9 +1,10 @@
 
 interface HeaderProps {
+    viewPage: string;
     setViewPage: (view: string) => void;
 }
 
-const HeaderComponent: React.FC<HeaderProps> = ({ setViewPage }) => {
+const HeaderComponent: React.FC<HeaderProps> = ({ viewPage, setViewPage }) => {
 
     const deleteAllSavedRectangles = () => {
         localStorage.removeItem("measurements")
@@ -13,13 +14,14 @@ const HeaderComponent: React.FC<HeaderProps> = ({ setViewPage }) => {
     return (
         <nav className="header">
             <div className="header_container">
+                {/* LOGO */}
                 <h3>Drawing Rectangles</h3>
                 <ul className="header_nav">
-                    <li role="button" onClick={() => setViewPage("draw")}>
+                    <li className={viewPage === "draw" ? "is_active" : ""} role="button" onClick={() => setViewPage("draw")}>
                         Draw
                     </li>
-                    <li role="button" onClick={() => setViewPage("view-rectangle")}>
-                        View Rectangle
+                    <li className={viewPage === "view-rectangle" ? "is_active" : ""} role="button" onClick={() => setViewPage("view-rectangle")}>
+                        View Rectangles
                     </li>
                 </ul>
 

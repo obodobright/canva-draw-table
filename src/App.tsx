@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="">
-      <HeaderComponent setViewPage={setViewPage} />
+      <HeaderComponent viewPage={viewPage} setViewPage={setViewPage} />
       {viewPage === "draw" ? <DrawViews /> : <>
         <ViewRectangle />
       </>}

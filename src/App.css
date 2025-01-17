@@ -176,6 +176,11 @@ td button {
   cursor: pointer;
 }
 
+.header_nav .is_active {
+  border-bottom: 1px solid white;
+  transition: all 350ms;
+}
+
 .header_container {
   display: flex;
   align-items: center;
