@@ -12,7 +12,7 @@
 
 ### STEPS TO RUN THE WEB APPLICATION
 
-- git clone [Medala assessment](https://github.com/obodobright/medalla-assement.git).
+- git clone [Medada assessment](https://github.com/obodobright/medada-assement.git).
 - cd medalla-assement
 - install npm dependencies - npm i
 - run the application - npm start
