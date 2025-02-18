@@ -11,11 +11,30 @@ const CanvasComponentExample: React.FC<CanvasProps> = ({ onSave }) => {
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
     const [currentRect, setCurrentRect] = useState<Rectangle | null>(null);
 
-    const startDrawing = (e: React.MouseEvent) => {
+    const getEventCoordinates = (e: React.MouseEvent | React.TouchEvent) => {
+        if (e.type.startsWith("touch")) {
+            const touchEvent = e as React.TouchEvent;
+            return {
+                clientX: touchEvent.touches[0].clientX,
+                clientY: touchEvent.touches[0].clientY,
+            };
+        } else {
+            const mouseEvent = e as React.MouseEvent;
+            return {
+                clientX: mouseEvent.clientX,
+                clientY: mouseEvent.clientY,
+            };
+        }
+    };
+
+    const startDrawing = (e: React.MouseEvent | React.TouchEvent) => {
         if (rectangles.length >= 2) return; // Prevent more than 2 rectangles
+
+        const { clientX, clientY } = getEventCoordinates(e)
+
         const rect = {
-            x: e.clientX,
-            y: e.clientY,
+            x: clientX,
+            y: clientY,
             width: 0,
             height: 0,
         };
@@ -23,22 +42,47 @@ const CanvasComponentExample: React.FC<CanvasProps> = ({ onSave }) => {
         setIsDrawing(true);
     };
 
-    const drawRect = (e: React.MouseEvent) => {
+    const drawRect = (e: React.MouseEvent | React.TouchEvent) => {
         if (!isDrawing || !currentRect || rectangles.length >= 2) return;
+
+        const { clientX, clientY } = getEventCoordinates(e)
+
         const rect = {
             ...currentRect,
-            width: e.clientX - currentRect.x,
-            height: e.clientY - currentRect.y,
+            width: clientX - currentRect.x,
+            height: clientY - currentRect.y,
         };
         setCurrentRect(rect);
     };
 
     const finishDrawing = () => {
-        if (currentRect) {
-            setRectangles((prev) => [...prev, currentRect]);
+
+
+        if (!currentRect || rectangles.length >= 2) return;
+        let { x, y, width, height } = currentRect;
+
+
+        if (Math.abs(width) < 5 || Math.abs(height) < 5) {
+            setCurrentRect(null);
+            setIsDrawing(false);
+            return;
         }
-        setIsDrawing(false);
+
+
+        if (width < 0) {
+            x += width;
+            width = Math.abs(width);
+        }
+        if (height < 0) {
+            y += height;
+            height = Math.abs(height);
+        }
+
+        const rect = { x, y, width, height };
+        setRectangles((prev) => [...prev, rect]);
         setCurrentRect(null);
+        setIsDrawing(false);
+
     };
 
     const calculateDistance = () => {
@@ -59,13 +103,22 @@ const CanvasComponentExample: React.FC<CanvasProps> = ({ onSave }) => {
     };
 
     const handleSave = () => {
+
+        if (rectangles.length < 2) {
+            alert("You must draw two rectangles before saving!");
+            return;
+        }
+
         const distance = calculateDistance();
         onSave(rectangles, distance);
         setRectangles([]); // Clear the canvas after saving
+
+
     };
 
     const handleClear = () => {
         setRectangles([]); // Clear the canvas
+        setCurrentRect(null) // prevent half drawn rectangles when the canva is cleared while drawing.
     };
 
     useEffect(() => {
@@ -98,13 +151,15 @@ const CanvasComponentExample: React.FC<CanvasProps> = ({ onSave }) => {
     return (
         <div className="view_canvas_mobile">
             <canvas
-                className="canvas_layout"
+                className="canvas_layout bg-red-50"
                 ref={canvasRef}
                 width={800}
-                height={600}
+                height={800}
                 onMouseDown={startDrawing}
                 onMouseMove={drawRect}
                 onMouseUp={finishDrawing}
+                onTouchStart={startDrawing}
+                onTouchMove={drawRect}
             />
             <div className="canva_footer">
                 <button onClick={handleSave}>Save</button>
